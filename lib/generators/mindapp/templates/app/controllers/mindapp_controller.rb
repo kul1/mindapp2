@@ -382,6 +382,7 @@ class MindappController < ApplicationController
   def create_xmain(service)
     c = name2camel(service.module.code)
     custom_controller= "#{c}Controller"
+    params["return"] = request.env['HTTP_REFERER']
     Mindapp::Xmain.create :service=>service,
                           :start=>Time.now,
                           :name=>service.name,
@@ -390,7 +391,7 @@ class MindappController < ApplicationController
                           :user=>current_user,
                           :xvars=> {
                               :service_id=>service.id,
-                              :p=>params.permit(:s, :action, :controller).to_h,
+                              :p=>params.to_unsafe_h,
                               :id=>params[:id],
                               :user_id=>current_user.try(:id),
                               :custom_controller=>custom_controller,
