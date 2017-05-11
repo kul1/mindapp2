@@ -1,0 +1,16 @@
+- @title= "My Articles"
+= paginate @articles
+%table{:id=>"pending-table", :width=>"100%"}
+  %tr{:style=>"color:white; background-color:#97BF60;"}
+    %th Title
+    %th Description
+    %th Created
+    %th Updated
+    %th Delete
+  - @articles.each do |article|
+    %tr
+      %td= link_to article.title, :controller=>"articles", :action=>"show", :id=>article.id
+      %td= markdown(article.text)
+      %td= article.created_at.strftime('%m/%d/%Y')
+      %td= article.updated_at.strftime('%m/%d/%Y')
+      %td(align='center')= link_to image_tag('delete.png', style:'border:none; float:none;'), "#", :onclick=>"if (confirm('Please Confirm')) {location.hash='/articles/destroy/#{article.id}';}"

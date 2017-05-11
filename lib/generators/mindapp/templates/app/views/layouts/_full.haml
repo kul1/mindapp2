@@ -34,6 +34,12 @@
   });
   $( document ).on( "pagechange", function(){
     $.get("/mindapp/ajax_notice", function(r) {$(r).appendTo('head').remove()});
+    var meta = $(".content").text();
+    if (!meta) {
+      meta = "Mindapp Tools to create visual programming using mindmap"
+    }
+    $('meta[name=description]').attr('content', meta);
   });
+
 
 /= raw handle_ma_notice
