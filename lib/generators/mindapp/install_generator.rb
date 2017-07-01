@@ -9,7 +9,7 @@ module Mindapp
       def setup_routes
         route "root :to => 'mindapp#index'"
         # route "match '/mindapp/init/:module/:service(/:id)' => 'Mindapp#init'"
-
+        mount Ckeditor::Engine => '/ckeditor'
         route "resources :identities"
         route "resources :sessions"
         route "post '/auth/:provider/callback' => 'sessions#create'"
