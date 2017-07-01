@@ -22,7 +22,7 @@ module Mindapp
         end
       end
       def finish
-        puts "Mongoid configured for rails 5 and heroku, please run rake mindapp:seed to set up admin/secret user/password"
+        puts "Mongoid finished configured for rails 5 and heroku.\nNext: To set up user/password as admin/secret\n      run 'rake mindapp:seed' "
       end
     end
   end

@@ -9,7 +9,7 @@ module Mindapp
       def setup_routes
         route "root :to => 'mindapp#index'"
         # route "match '/mindapp/init/:module/:service(/:id)' => 'Mindapp#init'"
-        mount Ckeditor::Engine => '/ckeditor'
+        route "mount Ckeditor::Engine => '/ckeditor'"
         route "resources :identities"
         route "resources :sessions"
         route "post '/auth/:provider/callback' => 'sessions#create'"
@@ -156,6 +156,18 @@ end
           gem "binding_of_caller"
           gem 'pry-byebug'
         end
+      end
+
+# gem 'ckeditor', github: 'galetahub/ckeditor'      
+# rails generate ckeditor:install --orm=mongoid --backend=paperclip
+      def setup_ckeditor
+        initializer "ckeditor.rb" do
+%q{# gem 'ckeditor', github: 'galetahub/ckeditor'      
+Ckeditor.setup do |config|
+  require 'ckeditor/orm/mongoid'
+end  
+}  
+        end            
       end
 
       def finish
