@@ -132,7 +132,6 @@ end
         gem 'ckeditor', github: 'galetahub/ckeditor'
         gem 'mongoid-paperclip', require: 'mongoid_paperclip'
         gem 'meta-tags'
-        gem 'turbolinks', '~> 5'
         gem 'jquery-turbolinks'
 
         gem "mongo", '~> 2.2'
@@ -156,11 +155,6 @@ end
           gem "better_errors"
           gem "binding_of_caller"
           gem 'pry-byebug'
-          gem 'web-console', '>= 3.3.0'
-          gem 'listen', '>= 3.0.5', '< 3.2'
-          # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-          gem 'spring'
-          gem 'spring-watcher-listen', '~> 2.0.0'
         end
       end
 
