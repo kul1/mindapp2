@@ -9,5 +9,6 @@ class Article
   has_many :comments
   validates :title, :text, :user_id, presence: true
   field :body, :type => String
+  field :keywords, :type => String
   # mindapp end
 end

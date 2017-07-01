@@ -10,6 +10,9 @@
  *
  * require_tree .
  * require_self
+ *= require normalize-rails
+ *= require font-awesome
+ *= require rouge
  */
 
 @import "jquery.mobile-1.2.1";
@@ -19,3 +22,10 @@
 
 @import "sarabun";
 @import "mindapp";
+@import "kul-4.2";
+@import "articles";
+
+
+
+
+

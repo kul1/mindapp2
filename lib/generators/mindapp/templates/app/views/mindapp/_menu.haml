@@ -3,10 +3,13 @@
   #main{"data-role" => "page"}
     %div{"data-role" => "header", "data-theme" => "b", "data-backbtn"=>"false"}
       %h1= head
-    %div{"data-role" => "content"}
+    %div{"data-role" => "content", "data-id" => "menu_mm"}
+
+
+
       %ul{"data-role" => "listview", "data-theme" => "g"}
         %li
-          %a{"data-panel" => "main", :href => "/mindapp"} Home
+          %a{"data-panel" => "main", "data-id" => "home", :href => "/mindapp"} Home
         = render :partial => "mindapp/menu_mm"
         - if login?
           %li

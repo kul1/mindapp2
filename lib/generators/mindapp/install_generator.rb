@@ -126,18 +126,20 @@ end
       end
 
       def setup_gems
+        gem 'rouge'
+        gem 'normalize-rails'
+        gem "font-awesome-rails"
+        gem 'ckeditor', github: 'galetahub/ckeditor'
+        gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+        gem 'meta-tags'
+        gem 'turbolinks', '~> 5'
+        gem 'jquery-turbolinks'
+
         gem "mongo", '~> 2.2'
         gem "bson", '~> 4.0'
-        # gem "mongo", '1.5.1'
-        # gem "bson_ext", '1.5.1'
-        # gem 'mongoid', '~> 4.0.0'
-        # for Rails 5.1.0.rc2
-
         gem 'mongoid', github: 'mongodb/mongoid'
         # gem "mongoid"
         gem "nokogiri" # use for mindapp/doc
-        # gem "rmagick", :require => "RMagick", :platform => "ruby"
-        #gem 'haml-rails'
         gem 'haml', git: 'https://github.com/haml/haml'
         gem "mail"
         gem "prawn"
@@ -154,6 +156,11 @@ end
           gem "better_errors"
           gem "binding_of_caller"
           gem 'pry-byebug'
+          gem 'web-console', '>= 3.3.0'
+          gem 'listen', '>= 3.0.5', '< 3.2'
+          # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+          gem 'spring'
+          gem 'spring-watcher-listen', '~> 2.0.0'
         end
       end
 

@@ -1,9 +1,11 @@
 !!! 5
 %html
   %head
-    %meta(name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1")
-    = stylesheet_link_tag "application"
-    = javascript_include_tag "application"
+    = favicon_link_tag image_path('4dcity.ico')
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag "application", 'data-turbolinks-track': 'reload' 
+    = csrf_meta_tags
+    = display_meta_tags 
     - if GMAP
       = javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
   %body
@@ -22,24 +24,16 @@
           %h1= @title || DEFAULT_TITLE
         %div{"data-role" => "content"}
           = yield
-
       = render :partial => "mindapp/static"
-
 :javascript
   $(document).on("pagehide", 'div', function(e,ui) {
     var page = $(e.target);
     if(page.attr('data-cache') == 'never') {
       page.remove();
-    };
+    }
   });
   $( document ).on( "pagechange", function(){
     $.get("/mindapp/ajax_notice", function(r) {$(r).appendTo('head').remove()});
-    var meta = $(".content").text();
-    if (!meta) {
-      meta = "Mindapp Tools to create visual programming using mindmap"
-    }
-    $('meta[name=description]').attr('content', meta);
   });
-
 
 /= raw handle_ma_notice
