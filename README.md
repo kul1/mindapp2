@@ -1,11 +1,11 @@
-# Mindapp
-*  Branch c241510
+# Mindapp2
+## Branch: master
 
-I like to develop application using Ruby on Rails. I find that most of my projects has some common tasks such as basic design, user administration, logging, workflow, etc. So I decide to use mind map to act as a language to explain what I want and have the tool generates the application that conform to standard framework so I can then customize everything later on. Mind map is used in design phase where it generates models and controller, in execution phase where it controls the work flow, and also use to generate documentation. System Analyst could use mind map to communicate with technical team to align their requirements and help in development.
+This rails app is an extended application from Mindapp. It modified to use the most update Rails, Mongoid and samples. 
 
 ## Changelog
 
-* v0.0.8 update for Rails 5
+* v1.0.0 for Rails 5.1 with Sample 
 
 ## Prerequisites
 
@@ -20,6 +20,7 @@ These versions works for sure but others may do.
 
 * database is MongoDB
 * images stored in upload directory, unset IMAGE_LOCATION in `initializer/mindapp.rb` to use Cloudinary
+* images in Article use paperclip and store data in AWS
 * mail use Gmail SMTP, config in `config/application.rb`
 * authentication use omniauth-identity
 
@@ -35,10 +36,10 @@ app without ActiveRecord
 
 
 For Development (most updated)
-    gem 'mindapp', github:'kul1/mindapp'
+    gem 'mindapp', github:'kul1/mindapp2'
 
-For Original 
-    gem 'mindapp'
+For Released version 
+    gem 'mindapp2'
        
 
 depend on your operating system, you may need to uncomment
