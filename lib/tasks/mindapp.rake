@@ -1,5 +1,5 @@
-require 'mindapp'
-require 'mindapp/helpers'
+require 'mindapp2'
+require 'mindapp2/helpers'
 include Mindapp::Helpers
 
 @btext= "# mindapp begin"
