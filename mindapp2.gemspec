@@ -5,7 +5,7 @@ require "mindapp/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "mindapp2"
-  spec.version       = Mindapp::VERSION
+  spec.version       = Mindapp2::VERSION
   spec.authors       = ["Korakot Leemakdej", "Prateep Kul"]
   spec.email         = ["1.0@kul.asia"]
 
