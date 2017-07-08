@@ -5,7 +5,7 @@ This is an extended version of Mindapp with mixed workflow and rails app. Mindap
 
 ## Changelog
 
-* v0.0.8 update for Rails 5
+* update for Rails 5.1.1
 
 ## Prerequisites
 
