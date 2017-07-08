@@ -32,7 +32,7 @@ app without ActiveRecord
 
 ## Add mindapp to your Gemfile:
 
-    gem 'mindapp2', '~> 0.1.1.1' 
+    gem 'mindapp2', '~> 0.1.1.2' 
 
 For Development (most updated)
 
