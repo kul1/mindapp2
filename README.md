@@ -5,14 +5,14 @@ This is an extended version of Mindapp with mixed workflow and rails app. Mindap
 
 ## Changelog
 
-* v0.0.8 update for Rails 5
+* update for Rails 5.1.2
 
 ## Prerequisites
 
 These versions works for sure but others may do.
 
 * Ruby 2.4.1
-* Rails 5.1.1
+* Rails 5.1.2
 * MongoDB 6
 * Freemind 1.0.1
 
