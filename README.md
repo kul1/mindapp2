@@ -1,5 +1,5 @@
 # Mindapp2
-## v0.1.1.1
+## v0.1.1.2
 
 This is an extended version of Mindapp with mixed workflow and rails app. Mindapp2 maintain workflow feature with upgrade to most update ruby and rails.
 
@@ -32,14 +32,11 @@ app without ActiveRecord
 
 ## Add mindapp to your Gemfile:
 
-
+    gem 'mindapp2', '~> 0.1.1.1' 
 
 For Development (most updated)
-    gem 'mindapp', github:'kul1/mindapp'
 
-For Original 
-    gem 'mindapp'
-       
+    gem 'mindapp', github:'kul1/mindapp2'
 
 depend on your operating system, you may need to uncomment
 
