@@ -1,18 +1,18 @@
 # Mindapp2
-## v0.1.1.3
+## v0.1.1.4
 
 This is an extended version of Mindapp with mixed workflow and rails app. Mindapp2 maintain workflow feature with upgrade to most update ruby and rails.
 
 ## Changelog
 
-* update for Rails 5.1.1
+* update for Rails 5.1.2
 
 ## Prerequisites
 
 These versions works for sure but others may do.
 
 * Ruby 2.4.1
-* Rails 5.1.1
+* Rails 5.1.2
 * MongoDB 6
 * Freemind 1.0.1
 
@@ -32,7 +32,7 @@ app without ActiveRecord
 
 ## Add mindapp to your Gemfile:
 
-    gem 'mindapp2', '~> 0.1.1.3' 
+    gem 'mindapp2'
 
 For Development (most updated)
 
