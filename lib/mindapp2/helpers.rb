@@ -336,7 +336,7 @@ module Mindapp
       end
       return !icons.include?("closed")
     end
-    def secured?(node)
+    def ma_secured?(node)
       icons=[]
       node.each_element("icon") do |nn|
         icons << nn.attributes["BUILTIN"]
