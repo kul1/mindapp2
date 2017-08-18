@@ -148,8 +148,8 @@ class MindappController < ApplicationController
   def run_output
     init_vars(params[:id])
     service= @xmain.service
-    disp= get_option("display")
-    display = (disp && !affirm(disp)) ? false : true
+    disp= get_option("ma_display")
+    ma_display = (disp && !affirm(disp)) ? false : true
     if service
       f= "app/views/#{service.module.code}/#{service.code}/#{@runseq.code}.html.erb"
       @ui= File.read(f)
@@ -157,14 +157,14 @@ class MindappController < ApplicationController
         @doc= Mindapp::Doc.where(:runseq_id=>@runseq.id).first
         @doc.update_attributes :data_text=> render_to_string(:inline=>@ui, :layout=>"utf8"),
                                :xmain=>@xmain, :runseq=>@runseq, :user=>current_user,
-                               :ip=> get_ip, :service=>service, :display=>display,
-                               :secured => @xmain.service.secured
+                               :ip=> get_ip, :service=>service, :ma_display=>ma_display,
+                               :ma_secured => @xmain.service.ma_secured
       else
         @doc= Mindapp::Doc.create :name=> @runseq.name,
                                   :content_type=>"output", :data_text=> render_to_string(:inline=>@ui, :layout=>"utf8"),
                                   :xmain=>@xmain, :runseq=>@runseq, :user=>current_user,
-                                  :ip=> get_ip, :service=>service, :display=>display,
-                                  :secured => @xmain.service.secured
+                                  :ip=> get_ip, :service=>service, :ma_display=>ma_display,
+                                  :ma_secured => @xmain.service.ma_secured
       end
       @message = defined?(MSG_NEXT) ? MSG_NEXT : "Next &gt;"
       @message = "สิ้นสุดการทำงาน" if @runseq.end
@@ -174,8 +174,8 @@ class MindappController < ApplicationController
       ma_log "Error: service not found"
       redirect_to_root
     end
-    #display= get_option("display")
-    unless display
+    #ma_display= get_option("ma_display")
+    unless ma_display
       end_action
     end
   end
@@ -187,8 +187,8 @@ class MindappController < ApplicationController
     @doc= Mindapp::Doc.create :name=> @runseq.name,
                               :content_type=>"mail", :data_text=> render_to_string(:inline=>@ui, :layout=>false),
                               :xmain=>@xmain, :runseq=>@runseq, :user=>current_user,
-                              :ip=> get_ip, :service=>service, :display=>false,
-                              :secured => @xmain.service.secured
+                              :ip=> get_ip, :service=>service, :ma_display=>false,
+                              :ma_secured => @xmain.service.ma_secured
     eval "@xvars[:#{@runseq.code}] = url_for(:controller=>'mindapp', :action=>'document', :id=>@doc.id)"
     mail_from = get_option('from')
     # sender= render_to_string(:inline=>mail_from) if mail_from
@@ -260,8 +260,8 @@ class MindappController < ApplicationController
         :filename=> params.original_filename,
         :content_type => params.content_type || 'application/zip',
         :data_text=> '',
-        :display=>true,
-        :secured => @xmain.service.secured )
+        :ma_display=>true,
+        :ma_secured => @xmain.service.ma_secured )
     if defined?(IMAGE_LOCATION)
       filename = "#{IMAGE_LOCATION}/f#{Param.gen(:asset_id)}"
       File.open(filename,"wb") { |f| f.write(params.read) }
@@ -283,7 +283,7 @@ class MindappController < ApplicationController
         :filename=> params.original_filename,
         :content_type => params.content_type || 'application/zip',
         :data_text=> '',
-        :display=>true, :secured => @xmain.service.secured )
+        :ma_display=>true, :ma_secured => @xmain.service.ma_secured )
     if defined?(IMAGE_LOCATION)
       filename = "#{IMAGE_LOCATION}/f#{Param.gen(:asset_id)}"
       File.open(filename,"wb") { |f| f.write(params.read) }
@@ -412,16 +412,16 @@ class MindappController < ApplicationController
       action= freemind2action(activity.elements['icon'].attributes['BUILTIN']) if activity.elements['icon']
       return false unless action
       i= i + 1
-      output_display= false
+      output_ma_display= false
       if action=='output'
-        display= get_option_xml("display", activity)
-        if display && !affirm(display)
-          output_display= false
+        ma_display= get_option_xml("ma_display", activity)
+        if ma_display && !affirm(ma_display)
+          output_ma_display= false
         else
-          output_display= true
+          output_ma_display= true
         end
       end
-      j= j + 1 if (action=='form' || output_display)
+      j= j + 1 if (action=='form' || output_ma_display)
       @xvars['referer'] = activity.attributes['TEXT'] if action=='redirect'
       if action!= 'if'
         scode, name= text.split(':', 2)
@@ -476,7 +476,7 @@ class MindappController < ApplicationController
                            :filename=> (params[:file_name]||''),
                            :content_type => (params[:content_type] || 'application/zip'),
                            :data_text=> '',
-                           :display=>true
+                           :ma_display=>true
       path = (IMAGE_LOCATION || "tmp")
       File.open("#{path}/f#{doc.id}","wb") { |f|
         f.puts(params[:content])
@@ -487,8 +487,8 @@ class MindappController < ApplicationController
     end
   end
   def do_search
-    if current_user.secured?
-      @docs = GmaDoc.search_secured(@q.downcase, params[:page], PER_PAGE)
+    if current_user.ma_secured?
+      @docs = GmaDoc.search_ma_secured(@q.downcase, params[:page], PER_PAGE)
     else
       @docs = GmaDoc.search(@q.downcase, params[:page], PER_PAGE)
     end
