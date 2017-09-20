@@ -2,8 +2,8 @@
 - Mindapp::Module.all.asc(:seq).each do |m|
   - unless m.role.blank?
     - next unless login?
-    - next unless current_user.role
-    - next unless current_user.role.upcase.split(',').include?(m.role.upcase)
+    - next unless current_ma_user.role
+    - next unless current_ma_user.role.upcase.split(',').include?(m.role.upcase)
   %li
     = m.name
     %ul
@@ -14,8 +14,8 @@
           - next if (!eval(s.rule))
         - unless s.role.blank?
           - next unless login?
-          - next unless current_user.role
-          - next unless current_user.role.upcase.split(',').include?(s.role.upcase)
+          - next unless current_ma_user.role
+          - next unless current_ma_user.role.upcase.split(',').include?(s.role.upcase)
         - if s.code.downcase=="link"
           - name, url = s.name.split(":", 2)
           - url.strip!

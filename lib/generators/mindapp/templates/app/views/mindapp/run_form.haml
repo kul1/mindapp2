@@ -1,7 +1,7 @@
 .head
   = step(@runseq.form_step, @xvars['total_form_steps'])
 %p
-- user = current_user || User.new
+- user = current_ma_user || User.new
 - form_class = 'formtastic'
 - next_step = 'end_form'
 - if @help

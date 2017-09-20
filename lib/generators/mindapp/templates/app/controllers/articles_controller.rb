@@ -30,7 +30,7 @@ class ArticlesController < ApplicationController
   end
 
   def my
-    @articles = Article.where(user_id: current_user).desc(:created_at).page(params[:page]).per(10)
+    @articles = Article.where(user_id: current_ma_user).desc(:created_at).page(params[:page]).per(10)
     @page_title       = 'Member Login'
   end
 
@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    if current_user.role.upcase.split(',').include?("A") || current_user == @article.user
+    if current_ma_user.role.upcase.split(',').include?("A") || current_ma_user == @article.user
       @article.destroy
     end
       redirect_to :action=>'index'

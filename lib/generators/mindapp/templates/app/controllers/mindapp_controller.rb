@@ -25,7 +25,7 @@ class MindappController < ApplicationController
     redirect_to action:"pending"
   end
   def ajax_notice
-    if notice=Mindapp::Notice.recent(current_user, request.env["REMOTE_ADDR"])
+    if notice=Mindapp::Notice.recent(current_ma_user, request.env["REMOTE_ADDR"])
       notice.update_attribute :unread, false
       js = "notice('#{notice.message}');"
     else
@@ -123,7 +123,7 @@ class MindappController < ApplicationController
     @runseq.start ||= Time.now
     @runseq.status= 'R' # running
     $runseq_id= @runseq.id
-    $user_id= current_user.try(:id)
+    $user_id= current_ma_user.try(:id)
     set_global
     controller = Kernel.const_get(@xvars['custom_controller']).new
     result = controller.send(@runseq.code)
@@ -156,13 +156,13 @@ class MindappController < ApplicationController
       if Mindapp::Doc.where(:runseq_id=>@runseq.id).exists?
         @doc= Mindapp::Doc.where(:runseq_id=>@runseq.id).first
         @doc.update_attributes :data_text=> render_to_string(:inline=>@ui, :layout=>"utf8"),
-                               :xmain=>@xmain, :runseq=>@runseq, :user=>current_user,
+                               :xmain=>@xmain, :runseq=>@runseq, :user=>current_ma_user,
                                :ip=> get_ip, :service=>service, :ma_display=>ma_display,
                                :ma_secured => @xmain.service.ma_secured
       else
         @doc= Mindapp::Doc.create :name=> @runseq.name,
                                   :content_type=>"output", :data_text=> render_to_string(:inline=>@ui, :layout=>"utf8"),
-                                  :xmain=>@xmain, :runseq=>@runseq, :user=>current_user,
+                                  :xmain=>@xmain, :runseq=>@runseq, :user=>current_ma_user,
                                   :ip=> get_ip, :service=>service, :ma_display=>ma_display,
                                   :ma_secured => @xmain.service.ma_secured
       end
@@ -186,7 +186,7 @@ class MindappController < ApplicationController
     @ui= File.read(f).html_safe
     @doc= Mindapp::Doc.create :name=> @runseq.name,
                               :content_type=>"mail", :data_text=> render_to_string(:inline=>@ui, :layout=>false),
-                              :xmain=>@xmain, :runseq=>@runseq, :user=>current_user,
+                              :xmain=>@xmain, :runseq=>@runseq, :user=>current_ma_user,
                               :ip=> get_ip, :service=>service, :ma_display=>false,
                               :ma_secured => @xmain.service.ma_secured
     eval "@xvars[:#{@runseq.code}] = url_for(:controller=>'mindapp', :action=>'document', :id=>@doc.id)"
@@ -228,7 +228,7 @@ class MindappController < ApplicationController
     @xmain.status= 'R' # running
     @xmain.save
     @runseq.status='F'
-    @runseq.user= current_user
+    @runseq.user= current_ma_user
     @runseq.stop= Time.now
     @runseq.save
     next_runseq= @xmain.runseqs.where(:rstep=> @runseq.rstep+1).first unless next_runseq
@@ -388,12 +388,12 @@ class MindappController < ApplicationController
                           :name=>service.name,
                           :ip=> get_ip,
                           :status=>'I', # init
-                          :user=>current_user,
+                          :user=>current_ma_user,
                           :xvars=> {
                               :service_id=>service.id,
                               :p=>params.to_unsafe_h,
                               :id=>params[:id],
-                              :user_id=>current_user.try(:id),
+                              :user_id=>current_ma_user.try(:id),
                               :custom_controller=>custom_controller,
                               :host=>request.host,
                               :referer=>request.env['HTTP_REFERER']
@@ -459,7 +459,7 @@ class MindappController < ApplicationController
     end
     $xmain= @xmain; $xvars= @xvars
     $runseq_id= @runseq.id
-    $user_id= current_user.try(:id)
+    $user_id= current_ma_user.try(:id)
   end
   def init_vars_by_runseq(runseq_id)
     @runseq= Mindapp::Runseq.find runseq_id
@@ -487,7 +487,7 @@ class MindappController < ApplicationController
     end
   end
   def do_search
-    if current_user.ma_secured?
+    if current_ma_user.ma_secured?
       @docs = GmaDoc.search_ma_secured(@q.downcase, params[:page], PER_PAGE)
     else
       @docs = GmaDoc.search(@q.downcase, params[:page], PER_PAGE)

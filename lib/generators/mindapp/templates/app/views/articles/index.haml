@@ -17,7 +17,7 @@
       %td= article.updated_at
       %td(align='center')
         - next unless login?
-        - unless current_user.role.upcase.split(',').include?("A")
+        - unless current_ma_user.role.upcase.split(',').include?("A")
           - next unless article.user
-          - next unless current_user == article.user
+          - next unless current_ma_user == article.user
         = link_to image_tag('delete.png', style:'border:none; float:none;'), "#", :onclick=>"if (confirm('Please Confirm')) {location.hash='/articles/destroy/#{article.id}';}"

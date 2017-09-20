@@ -74,12 +74,12 @@ module Mindapp
       %w(call ws redirect invoke email).include? s
     end
     def set_global
-      $xmain= @xmain ; $runseq = @runseq ; $user = current_user ; $xvars= @xmain.xvars; $ip = request.env["REMOTE_ADDR"]
+      $xmain= @xmain ; $runseq = @runseq ; $user = current_ma_user ; $xvars= @xmain.xvars; $ip = request.env["REMOTE_ADDR"]
     end
     def authorize? # use in pending tasks
       @runseq= @xmain.runseqs.find @xmain.current_runseq
       return false unless @runseq
-      @user = current_user
+      @user = current_ma_user
       set_global
       return false unless eval(@runseq.rule) if @runseq.rule
       return true if true_action?(@runseq.action)
@@ -94,8 +94,8 @@ module Mindapp
     def authorize_init? # use when initialize new transaction
       # check module role
       mrole = @service.module.role
-      return false if mrole && !current_user
-      return false if mrole && !current_user.has_role(mrole)
+      return false if mrole && !current_ma_user
+      return false if mrole && !current_ma_user.has_role(mrole)
 
       # check step 1 role
       xml= @service.xml
@@ -103,11 +103,11 @@ module Mindapp
       role= get_option_xml("role", step1) || ""
   #    rule= get_option_xml("rule", step1) || true
       return true if role==""
-      unless current_user
+      unless current_ma_user
         return role.blank?
       else
-        return false unless current_user.role
-        return current_user.has_role(role)
+        return false unless current_ma_user.role
+        return current_ma_user.has_role(role)
       end
     end
     def ma_log(message)
@@ -179,7 +179,7 @@ module Mindapp
     end
 
     # methods that I don't know where they came from
-    def current_user
+    def current_ma_user
       if session[:user_id]
         return @user ||= User.find(session[:user_id]['$oid'])
       else
@@ -309,7 +309,7 @@ module Mindapp
     end
     def own_xmain?
       if $xmain
-        return current_user.id==$xvars['user_id']
+        return current_ma_user.id==$xvars['user_id']
       else
         # if eval on first step would return true so user can start service
         return true
