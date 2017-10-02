@@ -13,6 +13,7 @@ module Mindapp
         route "resources :identities"
         route "resources :sessions"
         route "post '/auth/:provider/callback' => 'sessions#create'"
+        route "get '/auth/:provider/callback' => 'sessions#create'"
         route "get '/auth/failure' => 'sessions#failure'"
         route "get '/logout' => 'sessions#destroy', :as => 'logout'"
         route "get ':controller(/:action(/:id))(.:format)'"
@@ -56,8 +57,8 @@ module Mindapp
         initializer "mindapp.rb" do
 %q{# encoding: utf-8
 MM = "#{Rails.root}/app/mindapp/index.mm"
-DEFAULT_TITLE = 'Mindapp'
-DEFAULT_HEADER = 'Mindapp'
+DEFAULT_TITLE = 'Mindapp2'
+DEFAULT_HEADER = 'Mindapp2'
 GMAP = false
 NEXT = "Next >"
 # comment IMAGE_LOCATION to use cloudinary (specify params in config/cloudinary.yml)
@@ -103,6 +104,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     :on_failed_registration=> lambda { |env|
       IdentitiesController.action(:new).call(env)
   }
+  provider :facebook, ENV['FACEBOOK_API'], ENV['FACEBOOK_KEY']
 end
 }
         end
@@ -145,6 +147,8 @@ end
         gem "redcarpet"
         gem 'bcrypt-ruby', '~> 3.0.0'
         gem 'omniauth-identity'
+        gem 'omniauth-facebook'
+        gem 'dotenv-rails'
         gem 'cloudinary'
         gem 'kaminari'
         gem 'kaminari-mongoid'
@@ -171,7 +175,11 @@ end
       end
 
       def finish
-        puts "Mindapp installation finish, please run bundle install again to install additional gems. Then run rails generate mindapp:mongoid"
+        puts "Mindapp installation finish, please run the following command:\n"
+        puts "----------------------------------------\n"
+        puts "bundle install\n"
+        puts "rails generate mindapp:mongoid\n"
+        puts "----------------------------------------\n"
       end
 
     end

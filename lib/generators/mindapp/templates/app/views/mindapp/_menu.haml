@@ -4,9 +4,6 @@
     %div{"data-role" => "header", "data-theme" => "b", "data-backbtn"=>"false"}
       %h1= head
     %div{"data-role" => "content", "data-id" => "menu_mm"}
-
-
-
       %ul{"data-role" => "listview", "data-theme" => "g"}
         %li
           %a{"data-panel" => "main", "data-id" => "home", :href => "/mindapp"} Home
@@ -23,3 +20,5 @@
             %a{:href=>new_identity_path, "data-panel" => "main"} Sign Up
         %li
           = link_to "Refresh", "#", :onclick=>"window.location.replace('/')"
+        - if !login?    
+          = link_to image_tag( 'facebook-sign-in-button.png'), 'auth/facebook', rel: "external"  
