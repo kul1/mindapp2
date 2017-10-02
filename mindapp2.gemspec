@@ -6,7 +6,7 @@ require "mindapp2/version"
 Gem::Specification.new do |spec|
   spec.name          = "mindapp2"
   spec.version       = Mindapp::VERSION
-  spec.authors       = ["Korakot Leemakdej", "Prateep Kul"]
+  spec.authors       = [ "Prateep Kul", "Korakot Leemakdej"]
   spec.email         = ["1.0@kul.asia"]
 
   spec.summary       = %q{Rails workflow from mind map}
