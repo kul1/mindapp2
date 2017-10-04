@@ -361,7 +361,7 @@ module Mindapp
         'redirect'
       when 'kaddressbook' #Phone
         'invoke' # invoke new service along the way
-      when 'pencil'
+      when 'list'
         'output'
       when 'mail'
         'mail'
