@@ -309,7 +309,7 @@ class MindappController < ApplicationController
     File.open('public/doc.html','w') {|f| f.puts html }
     respond_to do |format|
       format.html {
-        render :text=> @print+html, :layout => 'layouts/_page'
+        render :plain=> @print+html, :layout => 'layouts/_page'
         # render :text=> Maruku.new(doc).to_html, :layout => false
         # format.html {
         #   h = RDoc::Markup::ToHtml.new
@@ -322,7 +322,7 @@ class MindappController < ApplicationController
         # system('pdflatex tmp/doc.tex ')
         # send_file( 'tmp/doc.pdf', :type => ‘application/pdf’,
         # :disposition => ‘inline’, :filename => 'doc.pdf')
-        render :text=>'done'
+        render :plain=>'done'
       }
     end
   end
