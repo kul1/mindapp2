@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   # https://www.cookieshq.co.uk/posts/easy-seo-metatags-with-rails-4#a-word-about-turbolinks
-  before_action :prepare_meta_tags, if: "request.get?"
-
+  before_action :prepare_meta_tags, if: -> { request.get? }
   def prepare_meta_tags(options={})
     site_name   = "4dCity.Com"
     title       = [controller_name, action_name].join(" ")
