@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
       title:       title,
       image:       image,
       description: description,
-      keywords:    %w[Mindapp2 Rails ruby Prateep Kul Korakot Leemakdej],
+      keywords:    %w[Mindapp2 Rails ruby Prateep Kul],
       twitter: {
         site_name: site_name,
         site: '@4dcity.com',
