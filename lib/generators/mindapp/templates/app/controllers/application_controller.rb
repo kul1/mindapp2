@@ -3,10 +3,10 @@ class ApplicationController < ActionController::Base
   # https://www.cookieshq.co.uk/posts/easy-seo-metatags-with-rails-4#a-word-about-turbolinks
   before_action :prepare_meta_tags, if: -> { request.get? }
   def prepare_meta_tags(options={})
-    site_name   = "4dCity.Com"
+    site_name   = "Mindapp2"
     title       = [controller_name, action_name].join(" ")
-    description = "4dCity Social Content"
-    image       = options[:image] || "http://www.4dcity.com/assets/4dcity.png" 
+    description = "Mindapp2 Tools to create visual programming using Freemind by Prateep Kul & Korakot Leemakdej"
+    image       = options[:image] || href="/assets/images/logo.png" 
     current_url = request.url
 
     # Let's prepare a nice set of defaults
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
       title:       title,
       image:       image,
       description: description,
-      keywords:    %w[web software development mobile app],
+      keywords:    %w[Mindapp2 Rails ruby Prateep Kul Korakot Leemakdej],
       twitter: {
         site_name: site_name,
         site: '@4dcity.com',

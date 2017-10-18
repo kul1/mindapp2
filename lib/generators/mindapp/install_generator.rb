@@ -22,12 +22,6 @@ module Mindapp
 
       def setup_env
         create_file 'README.md', ''
-        # bug in mongo ruby driver 1.6.1, wait for mongoid 2.4.7
-        # gem "mongo", "1.5.1"
-        # gem "bson_ext", "1.5.1"
-        # gem "mongoid"
-        # run "bundle install"
-        # generate "rspec:install"
         inject_into_file 'config/application.rb', :after => 'require "active_resource/railtie"' do
           "\nrequire 'mongoid/railtie'\n"
           "\nrequire 'rexml/document'\n"
@@ -128,6 +122,7 @@ end
       end
 
       def setup_gems
+        gem 'maruku', '~> 0.7.3'
         gem 'rouge'
         gem 'normalize-rails'
         gem "font-awesome-rails"
