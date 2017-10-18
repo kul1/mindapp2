@@ -85,6 +85,10 @@ Mongoid::Config.belongs_to_required_by_default = false
         inject_into_file 'config/environments/production.rb', :after => 'config.assets.compile = false' do
           "\n  config.assets.compile = true"
         end
+        inject_into_file 'config/initializers/assets.rb', :after => '# Precompile additional assets.
+' do        
+"\nRails.application.config.assets.precompile += %w( sarabun.css )\n"
+        end
       end
 
       def setup_omniauth
@@ -118,6 +122,8 @@ end
 
       def gen_image_store
         copy_file "cloudinary.yml","config/cloudinary.yml"
+        copy_file ".env",".env"
+
         empty_directory "upload" # create upload directory just in case
       end
 
