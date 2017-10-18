@@ -4,15 +4,15 @@
 
 ***
 
-# คู่มือการใช้งาน
+# Help (UNDER CONSTRUCTION: DUI)
 
 <%= render :partial=>'mindapp/modul.md', :collection=> Mindapp::Module.all.asc(:seq) %>
 
 ***
 
-# คู่มือผู้ดูแลระบบ
+# Admin 
 
-## โครงสร้างข้อมูล
+## Data Structure
 
 <%- models= @app.elements["//node[@TEXT='models']"] %>
 
@@ -20,18 +20,17 @@
 
 ***
 
-# ภาคผนวก
+# Contents
 
 ## markdown
 
-คู่มือนี้จัดทำขึ้นโดยอัตโนมัติจาก mind map และส่วนต่างๆ ของรหัสโปรแกรม 
-ผู้เกี่ยวข้องสามารถเขียนวิธีการใช้งานได้อย่างอิสระ โดยใช้คำสั่ง
+This document created and edited with 
 <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">markdown</a>
-ในการเขียนคู่มือประกอบเข้ากับส่วนต่างๆของระบบงาน ดังต่อไปนี้
 
-* คำอธิบายระบบในภาพรวม อยู่ในไฟล์ `README.md`
-* คำอธิบายระบบงาน อยู่ในไฟล์ `app/controllers/<ระบบงาน>.md`
-* คำอธิบายงาน อยู่ในไฟล์ `app/views/<ระบบงาน>/<งาน>.md`
-* คำอธิบายงานของ link สร้างเป็นกิ่งลูกต่อจาก link นั้น
-* คำอธิบายขั้นตอน อยู่ในไฟล์ `app/views/<ระบบงาน>/<งาน>/<ขั้นตอน>.md`
-* ตัวอย่างหน้าจอ อยู่ในไฟล์ `app/views/<ระบบงาน>/<งาน>/<ขั้นตอน>.png`
+Contents:
+
+* Requirement at `README.md`
+* Controller Help at  `app/controllers/system.md`
+* Project at  `app/views/project/<งาน>.md`
+*
+*
