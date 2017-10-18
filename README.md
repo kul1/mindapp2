@@ -1,5 +1,5 @@
 # Mindapp2
-## v0.1.1.4
+## v0.1.1.5
 
 This is an extended version of Mindapp with mixed workflow and rails app. Mindapp2 maintain workflow feature with upgrade to most update ruby and rails.
 
