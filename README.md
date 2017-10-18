@@ -5,7 +5,9 @@ This is an extended version of Mindapp with mixed workflow and rails app. Mindap
 
 ## Changelog
 
-* update for Rails 5.1.2
+* update for Rails 5.1.4
+* add facebook login [required: .env with facebook api and password]
+
 
 ## Prerequisites
 
@@ -28,7 +30,7 @@ These versions works for sure but others may do.
 Supposed we want to create ecommerce web site, first create a Rails
 app without ActiveRecord
 
-    $ rails new shop --skip-test-unit --skip-bundle --skip-active-record
+    $ rails new YOURAPP --skip-test-unit --skip-bundle --skip-active-record
 
 ## Add mindapp to your Gemfile:
 
