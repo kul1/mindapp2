@@ -87,7 +87,8 @@ Mongoid::Config.belongs_to_required_by_default = false
         end
         inject_into_file 'config/initializers/assets.rb', :after => '# Precompile additional assets.
 ' do        
-"\nRails.application.config.assets.precompile += %w( sarabun.css )\n"
+"Rails.application.config.assets.precompile += %w( sarabun.css )" +
+"\nRails.application.config.assets.precompile += %w( disable_enter_key.js )\n"
         end
       end
 
