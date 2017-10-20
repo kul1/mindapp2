@@ -1,16 +1,16 @@
 # Mindapp2
-## v0.1.8 by Dec 23, 2017
+## v0.1.9 by Dec 23, 2017
 * Features:
   ** New themes for Jquery.mobile
     ** Top Down Collapsible instead of Leff Menu
     
-## v0.1.7 by Nov 30, 2017
+## v0.1.8 by Nov 30, 2017
 * Fixed bug from comming Rails 5.2 in Dynamic router
 * Rewrite MindappController
   ** Subroutine from Mindapp
   ** Namespace controller and view follow scaffold
 
-## v0.1.6 (current) by Oct 23, 2017
+## v0.1.7 (current) by Oct 23, 2017
 * New Features:
   ** Samples method using Freemind, controller, view
   ** Articles with more features from samples

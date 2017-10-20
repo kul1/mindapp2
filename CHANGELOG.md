@@ -1,4 +1,4 @@
-## v0.1.5
+## v0.1.6
 * pdf print
 * html print
 * Add sample .env for Facebook localhost login
