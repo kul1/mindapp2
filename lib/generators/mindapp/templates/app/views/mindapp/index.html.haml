@@ -2,9 +2,13 @@
 = image_tag "logo_mindapp.png"
 
   
-%h2 You are working on 
+%h2 Current gems version found: 
 %ul
-  %li gem 'mindapp2', '~> 0.1.1.5'
+  %li Ruby Version #{RUBY_VERSION }
+  %li Rails Version #{Rails.version }
+  %li gem mindapp2 #{Gem.loaded_specs['mindapp2'].version}
+
+
 
 %h2 Requirements
 %ul  
