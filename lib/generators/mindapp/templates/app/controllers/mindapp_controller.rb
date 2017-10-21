@@ -167,7 +167,7 @@ class MindappController < ApplicationController
                                   :ma_secured => @xmain.service.ma_secured
       end
       @message = defined?(MSG_NEXT) ? MSG_NEXT : "Next &gt;"
-      @message = "สิ้นสุดการทำงาน" if @runseq.end
+      @message = "Finish" if @runseq.end
       eval "@xvars[@runseq.code] = url_for(:controller=>'Mindapp', :action=>'document', :id=>@doc.id)"
     else
       # flash[:notice]= "ไม่สามารถค้นหาบริการที่ต้องการได้"

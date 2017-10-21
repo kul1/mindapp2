@@ -1,7 +1,7 @@
 .head
   - @title= @xmain.name
   = step(@runseq.form_step, @xvars['total_form_steps'])
-  #title(style='text-align:right;')= "คลิ้กข้อความ '#{@runseq.name}' เพื่อจัดพิมพ์เอกสาร"
+  #title(style='text-align:right;')= "click '#{@runseq.name}' to print"
   %p
   =javascript_include_tag "disable_enter_key"
 = form_tag({ :action => 'end_output' } , {:multipart => true, :onKeyPress=>'return disableEnterKey(event)', :class=>'formtastic'}) do
