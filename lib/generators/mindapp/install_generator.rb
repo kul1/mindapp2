@@ -5,7 +5,7 @@ module Mindapp
       def self.source_root
         File.dirname(__FILE__) + "/templates"
       end
-
+binding.pry
       def setup_routes
         route "root :to => 'mindapp#index'"
         # route "match '/mindapp/init/:module/:service(/:id)' => 'Mindapp#init'"
@@ -19,7 +19,7 @@ module Mindapp
         route "get ':controller(/:action(/:id))(.:format)'"
         route "post ':controller(/:action(/:id))(.:format)'"
       end
-##
+
       def setup_env
         create_file 'README.md', ''
         inject_into_file 'config/application.rb', :after => 'require "active_resource/railtie"' do
