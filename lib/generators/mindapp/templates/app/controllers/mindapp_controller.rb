@@ -33,6 +33,9 @@ class MindappController < ApplicationController
     end
     render plain: "<script>#{js}</script>"
   end
+  ####################################################################################################]
+  # prepare xmain.runseq eg: how many form_step or total_step and step properties check if authorized
+  ####################################################################################################]
   def init
     module_code, code = params[:s].split(":")
     @service= Mindapp::Service.where(:module_code=> module_code, :code=> code).first
@@ -54,6 +57,9 @@ class MindappController < ApplicationController
       refresh_to "/", :alert => "Error: cannot process"
     end
   end
+  ####################################################################################################]
+  # run if, form, mail, output etc depend on icon in freemind
+  ####################################################################################################]
   def run
     init_vars(params[:id])
     if authorize?
@@ -77,7 +83,7 @@ class MindappController < ApplicationController
           f= "app/views/#{service.module.code}/#{service.code}/#{@runseq.code}.html.erb"
           @ui= File.read(f)
         else
-          # flash[:notice]= "ไม่สามารถค้นหาบริการที่ต้องการได้"
+          # flash[:notice]= "Service.module is not available"
           ma_log "Error: Service not found"
           redirect_to_root
         end
@@ -170,7 +176,7 @@ class MindappController < ApplicationController
       @message = "Finish" if @runseq.end
       eval "@xvars[@runseq.code] = url_for(:controller=>'Mindapp', :action=>'document', :id=>@doc.id)"
     else
-      # flash[:notice]= "ไม่สามารถค้นหาบริการที่ต้องการได้"
+      # flash[:notice]= "Service.module is not available"
       ma_log "Error: service not found"
       redirect_to_root
     end
@@ -345,7 +351,7 @@ class MindappController < ApplicationController
     @title= "Task number #{params[:xid]} #{@xmain.name}"
     @backbtn= true
     @xvars= @xmain.xvars
-    # flash.now[:notice]= "รายการ #{@xmain.id} ได้ถูกยกเลิกแล้ว" if @xmain.status=='X'
+    # flash.now[:notice]= "Process #{@xmain.id} was canceled" if @xmain.status=='X'
     ma_log "Task #{@xmain.id} is cancelled" if @xmain.status=='X'
       # flash.now[:notice]= "transaction #{@xmain.id} was cancelled" if @xmain.status=='X'
   rescue
