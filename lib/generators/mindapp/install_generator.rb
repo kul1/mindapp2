@@ -19,7 +19,7 @@ module Mindapp
         route "get ':controller(/:action(/:id))(.:format)'"
         route "post ':controller(/:action(/:id))(.:format)'"
       end
-
+##
       def setup_env
         create_file 'README.md', ''
         inject_into_file 'config/application.rb', :after => 'require "active_resource/railtie"' do
