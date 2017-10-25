@@ -5,7 +5,6 @@ module Mindapp
       def self.source_root
         File.dirname(__FILE__) + "/templates"
       end
-binding.pry
       def setup_routes
         route "root :to => 'mindapp#index'"
         # route "match '/mindapp/init/:module/:service(/:id)' => 'Mindapp#init'"
