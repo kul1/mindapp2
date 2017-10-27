@@ -2,8 +2,8 @@
 %p
 - @page_title  = 'All Articlces'
 = paginate @articles
-%table{:id=>"pending-table", :width=>"100%"}
-  %tr{:style=>"color:white; background-color:#97BF60;"}
+%table#article-table
+  %tr
     %th Title
     %th Description
     %th Created
