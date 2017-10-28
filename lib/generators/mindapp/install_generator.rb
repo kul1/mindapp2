@@ -134,21 +134,22 @@ end
         gem 'maruku', '~> 0.7.3'
         gem 'rouge'
         gem 'normalize-rails'
-        gem "font-awesome-rails"
+        gem 'font-awesome-rails'
         gem 'ckeditor', github: 'galetahub/ckeditor'
         gem 'mongoid-paperclip', require: 'mongoid_paperclip'
         gem 'meta-tags'
         gem 'jquery-turbolinks'
 
-        gem "mongo", '~> 2.2'
-        gem "bson", '~> 4.0'
+        gem 'mongo', '~> 2.2'
+        gem 'bson', '~> 4.0'
         gem 'mongoid', github: 'mongodb/mongoid'
         # gem "mongoid"
-        gem "nokogiri" # use for mindapp/doc
+        gem 'nokogiri' # use for mindapp/doc
         gem 'haml', git: 'https://github.com/haml/haml'
-        gem "mail"
-        gem "prawn"
-        gem "redcarpet"
+        gem 'haml-rails'
+        gem 'mail'
+        gem 'prawn'
+        gem 'redcarpet'
         gem 'bcrypt-ruby', '~> 3.0.0'
         gem 'omniauth-identity'
         gem 'omniauth-facebook'
