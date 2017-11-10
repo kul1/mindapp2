@@ -362,9 +362,11 @@ module Mindapp
       when 'kaddressbook' #Phone
         'invoke' # invoke new service along the way
       when 'list'
-        'output'
+        'list'
       when 'mail'
         'mail'
+      when 'xmag' # Tobe discussed
+        'search'  
       end
     end
     def affirm(s)
