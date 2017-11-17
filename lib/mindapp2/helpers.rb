@@ -178,14 +178,17 @@ module Mindapp
       out.html_safe
     end
 
-    # methods that I don't know where they came from
     def current_ma_user
-      if session[:user_id]
-        return @user ||= User.find(session[:user_id]['$oid'])
-      else
-        return nil
-      end
+      # if session[:user_id]
+      #   return @user ||= User.find(session[:user_id]['$oid'])
+      # else
+      #   return nil
+      # end
+      #@user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
+      @user ||= User.where(:auth_token => cookies[:auth_token]).first if cookies[:auth_token]
+
     end
+
     def ui_action?(s)
       %w(form output mail pdf).include? s
     end
@@ -305,7 +308,10 @@ module Mindapp
       return h
     end
     def login?
-      session[:user_id] != nil
+      ## To use remember me cookies then remove
+      #session[:user_id] != nil
+      #current_ma_user != nil
+      cookies[:auth_token] != nil
     end
     def own_xmain?
       if $xmain

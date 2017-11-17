@@ -11,15 +11,21 @@ class SessionsController < ApplicationController
     auth = request.env["omniauth.auth"]
     user = User.from_omniauth(auth)
     session[:user_id] = user.id
-    refresh_to root_path
+    if params.permit[:remember_me]
+      cookies.permanent[:auth_token] = user.auth_token
+    else
+      cookies[:auth_token] = user.auth_token
+    end
+    refresh_to root_path, :ma_notice => "Logged in"
   rescue
     redirect_to root_path, :alert=> "Authentication failed, please try again."
   end
 
   def destroy
-    session[:user_id] = nil
+    #session[:user_id] = nil
+    cookies.delete(:auth_token)
     # redirect_to '/mindapp/help'
-    refresh_to root_path
+    refresh_to root_path,, :ma_notice => "Logged Out"
     #  render not work!!
     #redirect_to 'mindapp/index'
   end

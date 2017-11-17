@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-protect_from_forgery prepend: true 
   # https://www.cookieshq.co.uk/posts/easy-seo-metatags-with-rails-4#a-word-about-turbolinks
   before_action :prepare_meta_tags, if: -> { request.get? }
   def prepare_meta_tags(options={})
