@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
     #session[:user_id] = nil
     cookies.delete(:auth_token)
     # redirect_to '/mindapp/help'
-    refresh_to root_path,, :ma_notice => "Logged Out"
+    refresh_to root_path, :ma_notice => "Logged Out"
     #  render not work!!
     #redirect_to 'mindapp/index'
   end
